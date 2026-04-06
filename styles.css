@@ -515,9 +515,14 @@ p {
 }
 
 /* Hero media container */
-.hero-media {
+/* Wrap for hero image + rotating badge (badge sits outside overflow:hidden) */
+.hero-media-wrap {
   position: relative;
   margin: 0 48px;
+}
+
+/* Hero media container */
+.hero-media {
   border-radius: var(--border-radius-lg);
   overflow: hidden;
   height: 500px;
@@ -531,14 +536,14 @@ p {
   object-fit: cover;
 }
 
-/* Rotating contact badge */
+/* Rotating contact badge — sits on .hero-media-wrap, never clipped by overflow:hidden */
 .rotating-badge {
   position: absolute;
-  top: -30px;
+  top: -65px;
   right: 60px;
   width: 130px;
   height: 130px;
-  z-index: 10;
+  z-index: 200;
 }
 
 .rotating-badge-inner {
@@ -918,6 +923,10 @@ p {
   padding: 22px 0;
   overflow: hidden;
   white-space: nowrap;
+  /* Ensure clear separation from the section above (hero image) */
+  margin-top: 60px;
+  position: relative;
+  z-index: 1;
 }
 
 .ticker-track {
@@ -1340,8 +1349,11 @@ p {
     gap: 32px;
   }
 
-  .hero-media {
+  .hero-media-wrap {
     margin: 0 32px;
+  }
+
+  .hero-media {
     height: 400px;
   }
 
@@ -1402,8 +1414,11 @@ p {
     gap: 24px;
   }
 
-  .hero-media {
+  .hero-media-wrap {
     margin: 0 24px;
+  }
+
+  .hero-media {
     height: 300px;
     border-radius: 20px;
   }
@@ -1411,7 +1426,8 @@ p {
   .rotating-badge {
     width: 100px;
     height: 100px;
-    right: 30px;
+    right: 20px;
+    top: -50px;
   }
 
   .rotating-badge-inner {
@@ -1424,9 +1440,16 @@ p {
     gap: 12px;
   }
 
+  /* Service cards — disable sticky on mobile, show as plain stacked list */
   .service-card {
-    position: static !important; /* disable sticky on mobile */
+    position: static !important;
     padding: 28px;
+    margin-bottom: 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  }
+
+  .services-cards {
+    gap: 0;
   }
 
   /* Works */
@@ -1498,6 +1521,240 @@ p {
 
   .page-hero-media {
     height: 280px;
+  }
+}
+
+/* ============================================================
+   PROCESS STEPS SECTION
+   Sequential icon highlight — each step lights up one by one
+   ============================================================ */
+
+.process-section {
+  padding: var(--section-padding);
+  background-color: var(--color-bg);
+}
+
+.process-header {
+  text-align: center;
+  margin-bottom: 72px;
+}
+
+.process-header .section-label {
+  font-family: var(--font-nav);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  display: block;
+  margin-bottom: 16px;
+}
+
+.process-header h2 {
+  color: var(--color-black);
+}
+
+.process-header h2 .accent {
+  color: var(--color-accent);
+}
+
+.process-header p {
+  max-width: 540px;
+  margin: 16px auto 0;
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+/* ── Steps grid ── */
+.process-steps {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0;
+  position: relative;
+}
+
+/* Connecting line between steps */
+.process-steps::before {
+  content: '';
+  position: absolute;
+  top: 40px;          /* vertically centered with the icon circles */
+  left: calc(10% + 20px);
+  right: calc(10% + 20px);
+  height: 2px;
+  background: linear-gradient(to right, var(--color-bg-alt) 0%, var(--color-bg-alt) 100%);
+  z-index: 0;
+}
+
+/* ── Individual step ── */
+.process-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 16px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Step number badge */
+.process-step-num {
+  font-family: var(--font-nav);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--color-body);
+  opacity: 0.5;
+  margin-bottom: 10px;
+  transition: opacity 0.4s ease;
+}
+
+/* Icon circle — default (inactive) state */
+.process-step-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: var(--color-bg-alt);
+  border: 2px solid transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  transition: background-color 0.4s ease,
+              border-color 0.4s ease,
+              box-shadow 0.4s ease,
+              transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+}
+
+.process-step-icon svg {
+  width: 32px;
+  height: 32px;
+  stroke: var(--color-body);
+  opacity: 0.45;
+  transition: stroke 0.4s ease, opacity 0.4s ease;
+}
+
+/* Step text */
+.process-step h4 {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-black);
+  margin-bottom: 8px;
+  opacity: 0.5;
+  transition: opacity 0.4s ease;
+}
+
+.process-step p {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--color-body);
+  opacity: 0.45;
+  transition: opacity 0.4s ease;
+}
+
+/* ── Active state — triggered by JS adding .is-active ── */
+.process-step.is-active .process-step-num {
+  opacity: 1;
+  color: var(--color-accent);
+}
+
+.process-step.is-active .process-step-icon {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent-dark);
+  box-shadow: 0 8px 32px rgba(216, 72, 47, 0.35);
+  transform: scale(1.08);
+}
+
+.process-step.is-active .process-step-icon svg {
+  stroke: var(--color-white);
+  opacity: 1;
+}
+
+.process-step.is-active h4 {
+  opacity: 1;
+  color: var(--color-black);
+}
+
+.process-step.is-active p {
+  opacity: 0.8;
+}
+
+/* Connector line segment highlights as steps activate */
+.process-step.is-active + .process-step .process-step-icon::before {
+  background-color: var(--color-accent);
+}
+
+/* ── Responsive Process Steps ── */
+@media (max-width: 1024px) {
+  .process-steps {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px 0;
+  }
+
+  /* Hide connecting line on wrapped grid */
+  .process-steps::before {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .process-steps {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px 16px;
+  }
+
+  .process-step-icon {
+    width: 64px;
+    height: 64px;
+  }
+
+  .process-step-icon svg {
+    width: 26px;
+    height: 26px;
+  }
+
+  .process-header {
+    margin-bottom: 48px;
+  }
+}
+
+/* ── Mobile scroll fix for works section ── */
+@media (max-width: 768px) {
+  .works-scroll-wrapper {
+    height: auto !important; /* override JS-set height */
+  }
+
+  .works-scroll-sticky {
+    position: relative !important;
+    top: auto !important;
+    height: auto !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 20px; /* space for scrollbar */
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-accent) var(--color-bg-alt);
+  }
+
+  .works-scroll-sticky::-webkit-scrollbar {
+    height: 4px;
+  }
+
+  .works-scroll-sticky::-webkit-scrollbar-track {
+    background: var(--color-bg-alt);
+    border-radius: 2px;
+  }
+
+  .works-scroll-sticky::-webkit-scrollbar-thumb {
+    background-color: var(--color-accent);
+    border-radius: 2px;
+  }
+
+  .works-scroll-track {
+    transform: none !important; /* disable JS translateX on mobile */
+    flex-wrap: nowrap;
+    padding: 20px 24px;
   }
 }
 

@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Make It Spain — Luxury Events & Travel in Spain</title>
+  <meta name="description" content="Your luxury event and travel specialists in Spain. Bachelorette parties, honeymoons, romantic getaways & special occasions — all curated for you." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ══ HEADER (injected by JS) ══ -->
+  <div id="header-placeholder"></div>
+
+
+  <!-- ══════════════════════════════════════════════════════
+       SECTION 1 — HERO
+       ══════════════════════════════════════════════════════ -->
+  <section class="hero" id="hero">
+
+    <div class="hero-top">
+
+      <!-- Left: Main heading -->
+      <h1 class="hero-heading">
+        Your Dream<br>
+        <em>Spain</em> Experience<br>
+        Awaits You
+      </h1>
+
+      <!-- Right: Copy + CTA -->
+      <div class="hero-right">
+        <p>
+          From sun-soaked bachelorette parties on the Costa del Sol to intimate
+          honeymoons in Seville — we craft unforgettable experiences in Spain
+          tailored to your story.
+        </p>
+
+        <!-- Client badges row -->
+        <div class="client-badges">
+          <div class="client-badges-avatars">
+            <div class="client-badge-avatar">MK</div>
+            <div class="client-badge-avatar">SL</div>
+            <div class="client-badge-avatar">JR</div>
+            <div class="client-badge-avatar">AB</div>
+          </div>
+          <p><strong>500+</strong> happy groups &amp; counting</p>
+        </div>
+
+        <a href="contact.html" class="btn-pill">
+          Plan My Trip <span class="arrow-icon">↗</span>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Full-width hero image + badge wrap (badge sits outside overflow:hidden) -->
+    <div class="hero-media-wrap">
+
+      <div class="hero-media">
+        <img
+          src="SECTION HERO honeymoon barcelona trip.webp"
+          alt="Honeymoon couple in Barcelona"
+          loading="eager"
+        />
+      </div>
+
+      <!-- Rotating contact badge — outside hero-media so it's never clipped -->
+      <div class="rotating-badge">
+        <div class="rotating-badge-inner" data-href="contact.html">
+          <div class="rotating-badge-text">
+            <svg viewBox="0 0 130 130">
+              <defs>
+                <path id="badgeCircle" d="M 65,65 m -47,0 a 47,47 0 1,1 94,0 a 47,47 0 1,1 -94,0"/>
+              </defs>
+              <text>
+                <textPath href="#badgeCircle">
+                  GET IN TOUCH · MAKE IT SPAIN · GET IN TOUCH ·
+                </textPath>
+              </text>
+            </svg>
+          </div>
+          <div class="rotating-badge-arrow">↗</div>
+        </div>
+      </div>
+
+    </div><!-- /hero-media-wrap -->
+
+  </section>
+  <!-- /hero -->
+
+
+  <!-- ══════════════════════════════════════════════════════
+       TICKER — Running text banner (separated from hero by margin-top in CSS)
+       ══════════════════════════════════════════════════════ -->
+  <div class="ticker-section" aria-hidden="true">
+    <div class="ticker-track">
+      <span class="ticker-item">Bachelorette Parties</span>
+      <span class="ticker-item">Hen Do in Spain</span>
+      <span class="ticker-item">Romantic Getaways</span>
+      <span class="ticker-item">Honeymoon Trips</span>
+      <span class="ticker-item">Stag Dos</span>
+      <span class="ticker-item">Luxury Travel</span>
+      <span class="ticker-item">Special Occasions</span>
+      <span class="ticker-item">Costa del Sol</span>
+      <span class="ticker-item">Ibiza</span>
+      <span class="ticker-item">Marbella</span>
+      <span class="ticker-item">Barcelona</span>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════
+       SECTION 2 — ABOUT / WHO WE ARE
+       ══════════════════════════════════════════════════════ -->
+  <section class="about-section fade-up" id="about">
+    <h2>We Make <span class="text-accent">Spain</span> Unforgettable</h2>
+    <p>
+      Make It Spain is your dedicated luxury travel &amp; event concierge for everything
+      Spain. Whether you're planning a wild bachelorette, a once-in-a-lifetime honeymoon,
+      or an intimate celebration with your closest friends, we handle every detail — so you
+      just show up and enjoy.
+    </p>
+    <p>
+      With deep local connections in Marbella, Ibiza, Barcelona, and beyond, we deliver
+      curated experiences that are exclusive, seamless, and completely tailored to you.
+    </p>
+    <a href="contact.html" class="btn-pill mt-24">
+      Discover More <span class="arrow-icon">↗</span>
+    </a>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════════
+       SECTION 3 — PORTFOLIO / WORKS (Horizontal Scroll Gallery)
+       ══════════════════════════════════════════════════════ -->
+  <section class="works-section" id="works">
+
+    <div class="works-header container">
+      <h2 class="fade-up">
+        Our<br>
+        <span class="accent">Work</span>
+      </h2>
+      <a href="contact.html" class="btn-pill">
+        View All <span class="arrow-icon">↗</span>
+      </a>
+    </div>
+
+    <!-- Scroll-jack wrapper: JS sets height, sticky inner scrolls horizontally -->
+    <div class="works-scroll-wrapper">
+      <div class="works-scroll-sticky">
+        <div class="works-scroll-track">
+
+          <div class="work-card">
+            <img src="SECTION 3 hen do girls bar.jpg" alt="Hen Do — Girls Night Out" loading="lazy" />
+            <div class="work-card-label">
+              <div class="work-card-label-text">
+                <h4>Hen Party</h4>
+                <span>Marbella, Spain</span>
+              </div>
+              <span class="arrow-circle-white">↗</span>
+            </div>
+          </div>
+
+          <div class="work-card">
+            <img src="SECTION 3 beachclub couple.jpg" alt="Romantic beach club couple" loading="lazy" />
+            <div class="work-card-label">
+              <div class="work-card-label-text">
+                <h4>Romantic Getaway</h4>
+                <span>Costa del Sol</span>
+              </div>
+              <span class="arrow-circle-white">↗</span>
+            </div>
+          </div>
+
+          <div class="work-card">
+            <img src="SECTION 3 bachelors.webp" alt="Bachelor group celebration" loading="lazy" />
+            <div class="work-card-label">
+              <div class="work-card-label-text">
+                <h4>Bachelor Party</h4>
+                <span>Ibiza, Spain</span>
+              </div>
+              <span class="arrow-circle-white">↗</span>
+            </div>
+          </div>
+
+          <div class="work-card">
+            <img src="SECTION 3 proposal beach.webp" alt="Beach proposal" loading="lazy" />
+            <div class="work-card-label">
+              <div class="work-card-label-text">
+                <h4>Proposal Setup</h4>
+                <span>Barcelona Beach</span>
+              </div>
+              <span class="arrow-circle-white">↗</span>
+            </div>
+          </div>
+
+          <div class="work-card">
+            <img src="SECTION 3 gay couple beach.jpg.webp" alt="Couple on beach" loading="lazy" />
+            <div class="work-card-label">
+              <div class="work-card-label-text">
+                <h4>Honeymoon Trip</h4>
+                <span>Seville, Spain</span>
+              </div>
+              <span class="arrow-circle-white">↗</span>
+            </div>
+          </div>
+
+          <div class="work-card">
+            <img src="SECTION 3coasta del sol couple.webp" alt="Couple on Costa del Sol" loading="lazy" />
+            <div class="work-card-label">
+              <div class="work-card-label-text">
+                <h4>Luxury Retreat</h4>
+                <span>Costa del Sol</span>
+              </div>
+              <span class="arrow-circle-white">↗</span>
+            </div>
+          </div>
+
+        </div><!-- /works-scroll-track -->
+      </div><!-- /works-scroll-sticky -->
+    </div><!-- /works-scroll-wrapper -->
+
+  </section>
+  <!-- /works -->
+
+
+  <!-- ══════════════════════════════════════════════════════
+       SECTION 4 — SERVICES (Stacking Cards)
+       ══════════════════════════════════════════════════════ -->
+  <section class="services-section" id="services">
+
+    <!-- Left: Sticky heading -->
+    <div class="services-left">
+      <h2 class="fade-up">
+        Every Celebration<br>
+        <span class="text-accent">Perfectly Planned</span>
+      </h2>
+      <p class="fade-up">
+        No matter the occasion, our expert team in Spain handles every detail —
+        from bookings and transfers to surprise setups and exclusive venue access.
+      </p>
+      <a href="contact.html" class="btn-pill fade-up">
+        Start Planning <span class="arrow-icon">↗</span>
+      </a>
+    </div>
+
+    <!-- Right: Stacking cards -->
+    <div class="services-cards">
+
+      <div class="service-card">
+        <h3>🎉 Bachelorette &amp; Hen Parties</h3>
+        <p>
+          Pool parties, beach clubs, yacht days, themed nights out — we plan the
+          ultimate girls' trip to Spain from start to finish.
+        </p>
+      </div>
+
+      <div class="service-card">
+        <h3>🥂 Bachelor &amp; Stag Dos</h3>
+        <p>
+          VIP nightclub access, luxury villa rentals, go-karting, boat trips —
+          unforgettable stag dos in Ibiza, Marbella &amp; beyond.
+        </p>
+      </div>
+
+      <div class="service-card">
+        <h3>💍 Romantic Vacations</h3>
+        <p>
+          Sunset dinners, private coves, flamenco shows — we craft intimate
+          romantic escapes through Spain's most beautiful destinations.
+        </p>
+      </div>
+
+      <div class="service-card">
+        <h3>🌹 Honeymoon Trips</h3>
+        <p>
+          From Barcelona's Gothic Quarter to Andalusian whitewashed villages —
+          your dream honeymoon, curated with love and local expertise.
+        </p>
+      </div>
+
+      <div class="service-card">
+        <h3>🎂 Special Occasions</h3>
+        <p>
+          Milestone birthdays, anniversary dinners, surprise parties — whatever
+          the occasion, we make it extraordinary.
+        </p>
+      </div>
+
+      <div class="service-card">
+        <h3>✈️ Luxury Travel</h3>
+        <p>
+          Private jets, 5-star resorts, personal concierge — full luxury travel
+          packages throughout Spain for the most discerning travellers.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+  <!-- /services -->
+
+
+  <!-- ══════════════════════════════════════════════════════
+       SECTION 5 — PROCESS STEPS
+       Sequential highlight animation — JS adds .is-active
+       one by one when section scrolls into view
+       ══════════════════════════════════════════════════════ -->
+  <section class="process-section" id="process">
+
+    <div class="process-header fade-up">
+      <span class="section-label">How It Works</span>
+      <h2>Your Journey to <span class="accent">Spain</span>,<br>Step by Step</h2>
+      <p>
+        We keep it simple. Tell us your dream — we handle everything else.
+        Here's how we bring your perfect Spain experience to life.
+      </p>
+    </div>
+
+    <div class="process-steps">
+
+      <!-- Step 1 -->
+      <div class="process-step">
+        <span class="process-step-num">01</span>
+        <div class="process-step-icon">
+          <!-- Chat / enquiry icon -->
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+        </div>
+        <h4>Tell Us Your Vision</h4>
+        <p>Fill in a quick enquiry form or drop us a WhatsApp — no commitment needed.</p>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="process-step">
+        <span class="process-step-num">02</span>
+        <div class="process-step-icon">
+          <!-- Clipboard / planning icon -->
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="2" width="6" height="4" rx="1"/>
+            <path d="M5 4h-1a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1"/>
+            <path d="M9 12h6M9 16h4"/>
+          </svg>
+        </div>
+        <h4>We Build Your Itinerary</h4>
+        <p>Our Spain specialists craft a bespoke proposal — venues, activities, every detail.</p>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="process-step">
+        <span class="process-step-num">03</span>
+        <div class="process-step-icon">
+          <!-- Checkmark / approve icon -->
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 6L9 17l-5-5"/>
+          </svg>
+        </div>
+        <h4>You Approve &amp; Book</h4>
+        <p>Review, tweak and confirm your dream trip. Secure with a simple deposit.</p>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="process-step">
+        <span class="process-step-num">04</span>
+        <div class="process-step-icon">
+          <!-- Star / VIP icon -->
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+        </div>
+        <h4>We Handle Everything</h4>
+        <p>Bookings, transfers, reservations — our team manages every last detail for you.</p>
+      </div>
+
+      <!-- Step 5 -->
+      <div class="process-step">
+        <span class="process-step-num">05</span>
+        <div class="process-step-icon">
+          <!-- Heart / enjoy icon -->
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+        </div>
+        <h4>You Just Enjoy Spain</h4>
+        <p>Arrive, relax, celebrate. We're on-call throughout to make it perfect.</p>
+      </div>
+
+    </div><!-- /process-steps -->
+
+  </section>
+  <!-- /process -->
+
+
+  <!-- ══════════════════════════════════════════════════════
+       SECTION 6 — STATS
+       ══════════════════════════════════════════════════════ -->
+  <section class="stats-section" id="stats">
+
+    <div class="stats-bg">
+      <img src="SECTION 8spain marbella.webp" alt="" role="presentation" />
+    </div>
+
+    <div class="stat-item fade-up">
+      <div class="stat-number" data-target="500" data-suffix="+">500+</div>
+      <div class="stat-label">Happy Groups</div>
+    </div>
+
+    <div class="stat-item fade-up">
+      <div class="stat-number" data-target="8" data-suffix="">8</div>
+      <div class="stat-label">Years in Spain</div>
+    </div>
+
+    <div class="stat-item fade-up">
+      <div class="stat-number" data-target="15" data-suffix="+">15+</div>
+      <div class="stat-label">Spanish Destinations</div>
+    </div>
+
+    <div class="stat-item fade-up">
+      <div class="stat-number" data-target="98" data-suffix="%">98%</div>
+      <div class="stat-label">5-Star Reviews</div>
+    </div>
+
+  </section>
+  <!-- /stats -->
+
+
+  <!-- ══════════════════════════════════════════════════════
+       SECTION 7 — DESTINATIONS GALLERY
+       ══════════════════════════════════════════════════════ -->
+  <section class="more-services-section" id="destinations" style="padding-top: var(--section-padding);">
+
+    <div class="container">
+      <p class="more-services-label">Our Destinations</p>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:60px;">
+
+        <div style="border-radius:20px;overflow:hidden;height:280px;position:relative;">
+          <img src="SECTION 8 spain architecture.jpg" alt="Spain Architecture" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />
+          <div style="position:absolute;bottom:16px;left:16px;background:rgba(20,23,24,0.7);color:#fff;padding:8px 16px;border-radius:999px;font-size:13px;font-family:var(--font-nav);">Madrid</div>
+        </div>
+
+        <div style="border-radius:20px;overflow:hidden;height:280px;position:relative;">
+          <img src="SECTION 8spain ibiza.jpg" alt="Ibiza Spain" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />
+          <div style="position:absolute;bottom:16px;left:16px;background:rgba(20,23,24,0.7);color:#fff;padding:8px 16px;border-radius:999px;font-size:13px;font-family:var(--font-nav);">Ibiza</div>
+        </div>
+
+        <div style="border-radius:20px;overflow:hidden;height:280px;position:relative;">
+          <img src="SECTION 8spain marbella.webp" alt="Marbella Spain" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />
+          <div style="position:absolute;bottom:16px;left:16px;background:rgba(20,23,24,0.7);color:#fff;padding:8px 16px;border-radius:999px;font-size:13px;font-family:var(--font-nav);">Marbella</div>
+        </div>
+
+        <div style="border-radius:20px;overflow:hidden;height:280px;position:relative;">
+          <img src="SECTION 8 spain white houses.webp" alt="Andalusia white houses" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />
+          <div style="position:absolute;bottom:16px;left:16px;background:rgba(20,23,24,0.7);color:#fff;padding:8px 16px;border-radius:999px;font-size:13px;font-family:var(--font-nav);">Andalusia</div>
+        </div>
+
+        <div style="border-radius:20px;overflow:hidden;height:280px;position:relative;">
+          <img src="SECTION 8 spain madrid.webp" alt="Madrid city" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />
+          <div style="position:absolute;bottom:16px;left:16px;background:rgba(20,23,24,0.7);color:#fff;padding:8px 16px;border-radius:999px;font-size:13px;font-family:var(--font-nav);">Costa Brava</div>
+        </div>
+
+        <div style="border-radius:20px;overflow:hidden;height:280px;position:relative;">
+          <img src="SECTION 8spain sea town.jpg" alt="Spanish coastal town" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />
+          <div style="position:absolute;bottom:16px;left:16px;background:rgba(20,23,24,0.7);color:#fff;padding:8px 16px;border-radius:999px;font-size:13px;font-family:var(--font-nav);">Costa del Sol</div>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+  <!-- /destinations -->
+
+
+  <!-- ══════════════════════════════════════════════════════
+       SECTION 8 — TESTIMONIALS
+       ══════════════════════════════════════════════════════ -->
+  <section class="testimonials-section" id="testimonials">
+
+    <div class="testimonials-header fade-up">
+      <span class="testimonials-icon">★★★★★</span>
+      <h2>What Our Clients Say</h2>
+    </div>
+
+    <div class="testimonials-grid">
+
+      <div class="testimonial-card fade-up">
+        <div class="testimonial-author">
+          <div class="testimonial-author-avatar">
+            <div style="width:100%;height:100%;background:var(--color-card-blue);display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:16px;">S</div>
+          </div>
+          <div class="testimonial-author-info">
+            <h4>Sarah M.</h4>
+            <span>Bachelorette in Marbella</span>
+          </div>
+        </div>
+        <p>
+          "Make It Spain took care of absolutely everything. Our hen party in Marbella
+          was beyond anything we could have planned ourselves. Every girl in our group
+          is still talking about it months later!"
+        </p>
+      </div>
+
+      <div class="testimonial-card fade-up">
+        <div class="testimonial-author">
+          <div class="testimonial-author-avatar">
+            <div style="width:100%;height:100%;background:var(--color-card-green);display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:16px;">J</div>
+          </div>
+          <div class="testimonial-author-info">
+            <h4>James &amp; Lucia</h4>
+            <span>Honeymoon in Barcelona</span>
+          </div>
+        </div>
+        <p>
+          "We had no idea where to start with planning our honeymoon. Make It Spain
+          created the most magical itinerary for Barcelona &amp; Seville — every restaurant,
+          every experience was absolutely perfect."
+        </p>
+      </div>
+
+      <div class="testimonial-card fade-up">
+        <div class="testimonial-author">
+          <div class="testimonial-author-avatar">
+            <div style="width:100%;height:100%;background:var(--color-card-red);display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:16px;">K</div>
+          </div>
+          <div class="testimonial-author-info">
+            <h4>Katie R.</h4>
+            <span>Birthday in Ibiza</span>
+          </div>
+        </div>
+        <p>
+          "Best birthday of my life! The team sorted our villa, boat party, beach club
+          and nightclub tables — all seamlessly. I just showed up and had the most
+          incredible time with my closest friends."
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+  <!-- /testimonials -->
+
+
+  <!-- ══════════════════════════════════════════════════════
+       SECTION 9 — CTA BANNER
+       ══════════════════════════════════════════════════════ -->
+  <section class="cta-section">
+    <div class="cta-banner">
+      <h2>Ready to Make <span>Spain</span><br>Your Story?</h2>
+      <p>Get in touch today and let us plan your perfect Spain experience — completely stress-free.</p>
+      <a href="contact.html" class="btn-pill btn-pill-white">
+        Get My Free Proposal <span class="arrow-icon">↗</span>
+      </a>
+    </div>
+  </section>
+  <!-- /cta -->
+
+
+  <!-- ══ FOOTER (injected by JS) ══ -->
+  <div id="footer-placeholder"></div>
+
+
+  <!-- ══ Scripts ══ -->
+  <script src="main.js"></script>
+
+</body>
+</html>

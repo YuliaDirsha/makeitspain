@@ -156,16 +156,16 @@ function initSite() {
   // ============================================================
   // 5. STACKING SERVICE CARDS
   //    Cards stack one on top of each other as you scroll.
-  //    Page only continues scrolling after all cards are stacked.
-  //    Uses CSS sticky — JS just triggers the section height.
+  //    Uses CSS sticky with incrementing top values.
+  //    On mobile: sticky is disabled (position:static) — cards
+  //    just stack normally in a scrollable list.
   // ============================================================
   const servicesCards = document.querySelectorAll('.service-card');
 
-  // The stacking effect is driven purely by CSS `position: sticky`
-  // with incrementing `top` values set in the stylesheet.
-  // No extra JS needed for the basic stacking.
-  // We DO add a scroll-reveal for each card entering from below:
   if (servicesCards.length > 0) {
+    // Only apply the JS scroll-reveal on desktop (sticky is active)
+    const isMobile = () => window.innerWidth <= 768;
+
     const cardObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -173,65 +173,103 @@ function initSite() {
           entry.target.style.transform  = 'translateY(0) scale(1)';
         }
       });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.08 });
 
     servicesCards.forEach((card, i) => {
-      card.style.opacity   = '0';
-      card.style.transform = 'translateY(40px) scale(0.97)';
-      card.style.transition = `opacity 0.5s ease ${i * 0.1}s, transform 0.5s ease ${i * 0.1}s`;
-      cardObserver.observe(card);
+      if (!isMobile()) {
+        card.style.opacity   = '0';
+        card.style.transform = 'translateY(40px) scale(0.97)';
+        card.style.transition = `opacity 0.5s ease ${i * 0.08}s, transform 0.5s ease ${i * 0.08}s`;
+        cardObserver.observe(card);
+      } else {
+        // On mobile, show cards immediately — no sticky needed
+        card.style.opacity   = '1';
+        card.style.transform = 'none';
+      }
+    });
+
+    // Re-evaluate on resize (e.g. orientation change)
+    window.addEventListener('resize', () => {
+      servicesCards.forEach((card, i) => {
+        if (isMobile()) {
+          card.style.opacity   = '1';
+          card.style.transform = 'none';
+          cardObserver.unobserve(card);
+        }
+      });
     });
   }
 
 
   // ============================================================
   // 6. HORIZONTAL SCROLL-JACK GALLERY
-  //    Page freezes → gallery scrolls left → page resumes
+  //    Desktop: Page freezes → gallery scrolls left → page resumes.
+  //    Mobile: CSS converts to touch-swipeable horizontal row.
+  //    Uses a reusable setupHorizontalScroll() function so the
+  //    same logic works for both the works gallery and any future
+  //    horizontal scroll sections (e.g. about-scroll-wrapper).
   // ============================================================
-  const worksWrapper = document.querySelector('.works-scroll-wrapper');
-  const worksTrack   = document.querySelector('.works-scroll-track');
+  const isDesktop = () => window.innerWidth > 768;
 
-  if (worksWrapper && worksTrack) {
+  const setupHorizontalScroll = (wrapperSel, trackSel) => {
+    const wrapper = document.querySelector(wrapperSel);
+    const track   = document.querySelector(trackSel);
+    if (!wrapper || !track) return;
 
-    // Set wrapper height = extra scroll room for horizontal movement
-    const setupWorksScroll = () => {
-      const trackWidth    = worksTrack.scrollWidth;
-      const viewportWidth = window.innerWidth;
-      const scrollDistance = trackWidth - viewportWidth + 96; // 96 = padding
-      // wrapper height = viewport height + total horizontal scroll distance
-      worksWrapper.style.height = `${window.innerHeight + scrollDistance}px`;
-      return scrollDistance;
+    // On mobile: CSS handles it (position:relative + overflow-x:auto)
+    // No JS scroll-jack needed on mobile.
+    if (!isDesktop()) return;
+
+    let dist = 0;
+
+    const setup = () => {
+      if (!isDesktop()) {
+        wrapper.style.height = '';
+        track.style.transform = '';
+        return;
+      }
+      // Total horizontal distance the track needs to travel
+      dist = track.scrollWidth - window.innerWidth;
+      if (dist < 0) dist = 0;
+      // Wrapper height = viewport height (for the sticky panel)
+      //                + horizontal travel (extra scroll budget)
+      wrapper.style.height = `${window.innerHeight + dist}px`;
     };
 
-    let worksScrollDistance = setupWorksScroll();
-    window.addEventListener('resize', () => {
-      worksScrollDistance = setupWorksScroll();
-    });
+    // Run AFTER all images have loaded so scrollWidth is accurate
+    if (document.readyState === 'complete') {
+      setup();
+    } else {
+      window.addEventListener('load', setup);
+    }
+    window.addEventListener('resize', setup);
 
-    const onWorksScroll = () => {
-      if (!worksWrapper) return;
-      const rect      = worksWrapper.getBoundingClientRect();
-      const stickyTop = 0; // sticky top: 0
+    window.addEventListener('scroll', () => {
+      if (!isDesktop() || !dist) return;
+      const wrapTop = wrapper.getBoundingClientRect().top;
+      // How many px we've scrolled INTO the wrapper
+      const scrolled = -wrapTop;
 
-      // How far into the sticky zone are we?
-      const scrolled = -rect.top;
+      if (scrolled <= 0) {
+        track.style.transform = 'translateX(0)';
+        return;
+      }
+      if (scrolled >= dist) {
+        track.style.transform = `translateX(${-dist}px)`;
+        return;
+      }
+      track.style.transform = `translateX(${-scrolled}px)`;
+    }, { passive: true });
+  };
 
-      if (scrolled < 0 || scrolled > worksScrollDistance) return;
-
-      // Map vertical scroll → horizontal translation
-      const progress = scrolled / worksScrollDistance;
-      const translateX = -progress * worksScrollDistance;
-
-      worksTrack.style.transform = `translateX(${translateX}px)`;
-    };
-
-    window.addEventListener('scroll', onWorksScroll, { passive: true });
-  }
+  // Apply to all horizontal scroll galleries
+  setupHorizontalScroll('.about-scroll-wrapper', '.about-scroll-track');
+  setupHorizontalScroll('.works-scroll-wrapper',  '.works-scroll-track');
 
 
   // ============================================================
   // 7. TICKER / RUNNING TEXT
-  //    Pure CSS handles the animation (defined in styles.css).
+  //    Pure CSS handles the animation.
   //    JS just duplicates the ticker content to make it seamless.
   // ============================================================
   const tickerTrack = document.querySelector('.ticker-track');
@@ -383,6 +421,45 @@ function initSite() {
   animateIn(heroHeading, 0.1);
   animateIn(heroRight,   0.3);
   animateIn(heroMediaEl, 0.5);
+
+
+  // ============================================================
+  // 16. PROCESS STEPS — Sequential icon highlight on scroll
+  //     When section enters viewport, steps light up one by one
+  //     with a staggered delay. Each step gets .is-active class.
+  // ============================================================
+  const processSteps = document.querySelectorAll('.process-step');
+
+  if (processSteps.length > 0) {
+    let processAnimated = false;
+
+    const activateSteps = () => {
+      if (processAnimated) return;
+      processAnimated = true;
+      processSteps.forEach((step, i) => {
+        setTimeout(() => {
+          step.classList.add('is-active');
+        }, i * 400); // 400ms between each step
+      });
+    };
+
+    const processObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          activateSteps();
+          processObserver.disconnect();
+        }
+      });
+    }, { threshold: 0.25 });
+
+    // Observe the whole process section, not individual steps
+    const processSection = document.querySelector('.process-section');
+    if (processSection) {
+      processObserver.observe(processSection);
+    } else {
+      processObserver.observe(processSteps[0]);
+    }
+  }
 
 } // end initSite()
 
